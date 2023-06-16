@@ -32,15 +32,16 @@ export default function App() {
   const [selectedFile, setSelectedFile] = useState(null)
   const [filePath, setFilePath] = useState("/file-server/")
   const [showChartModal, setShowChartModal] = useState(false)
-  //feature 
+  //feature "Space Breakdown"
   const [showChartModalSpace, setShowChartModalSpace] = useState(false)
-  //feature 
+  //feature "Files Filtering"
   const [filterVideo, setFilterVideo] = useState(false)
   const [filterAudio, setFilterAudio] = useState(false)
   const [filterDocument, setFilterDocument] = useState(false)
   const [filterImage, setFilterImage] = useState(false)
   const [hoveredFile, setHoveredFile] = useState(null)
-  const [starred, setStarred] = useState(null)
+  const [starred, setStarred] = useState(false)
+  const [starredList, setStarredList] = useState([])
 
 
 
@@ -378,10 +379,20 @@ export default function App() {
                 } else { onlyImage = data.filter(file => file.type === "image"); setFilterImage(true) }
 
                 setSelectedFile(null)
-                return setMyFiles([...onlyVideo, ...onlyAudio, ...onlyDocument, ...onlyImage]);
 
+                if (starred) {
+                  return setMyFiles([...onlyVideo, ...onlyAudio, ...onlyDocument, ...onlyImage, ...starredList])
+                } else {
+                  return setMyFiles([...onlyVideo, ...onlyAudio, ...onlyDocument, ...onlyImage])
+                }
               }}
             >Image</button>
+
+            <button style={{ ...styles.filterButton, backgroundColor: starred ? 'blue' : 'black', }}
+              onClick={() => {
+
+              }}
+            >Favorite</button>
 
             <button style={styles.filterButton}
               onClick={() => {
@@ -413,11 +424,23 @@ export default function App() {
                       onClick={() => {
                         if (selectedFile && selectedFile.id === file.id) {
                           setSelectedFile(null)
-                          return
-                        }
-                        setSelectedFile(file)
+                        } else { setSelectedFile(file) }
                       }}>
-                      <p><i className="fas fa-star"></i> {file.name}</p>
+                      <p><i className="fas fa-star"
+                        style={{ color: starredList.includes(file.id) ? 'blue' : 'black', }}
+                        onClick={() => {
+
+                          let updatedList = [];
+                          if (starredList.includes(file.id)) {
+                            updatedList = starredList.filter((file) => file.id !== file.id);
+                            setStarredList(updatedList)
+
+                          } else {
+                            updatedList = [...starredList, file.id];
+                            setStarredList(updatedList)
+                          }
+                        }}>
+                      </i> {file.name}</p>
                     </div>
 
                   )
