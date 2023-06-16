@@ -55,4 +55,32 @@ export const data = [
         path: "/file-server/document3.pdf",
         size: 272
     },
+    {
+        id: 9,
+        name: 'Video File 2',
+        type: 'video',
+        path: "/file-server/video2.mp4",
+        size: 272
+    },
+    {
+        id: 10,
+        name: 'Video File 3',
+        type: 'video',
+        path: "/file-server/video3.mp4",
+        size: 272
+    },
+    {
+        id: 11,
+        name: 'Audio File 2',
+        type: 'audio',
+        path: "/file-server/audio2.mp3",
+        size: 272
+    },
+    {
+        id: 12,
+        name: 'Audio File 3',
+        type: 'audio',
+        path: "/file-server/audio3.mp3",
+        size: 272
+    },
 ]
