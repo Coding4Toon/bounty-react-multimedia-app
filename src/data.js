@@ -1,86 +1,86 @@
 export const data = [
     {
         id: 1,
-        name: 'Video File',
+        name: 'Avatar',
         type: 'video',
         path: "/file-server/video.mp4",
         size: 10810
     },
     {
         id: 2,
-        name: 'Audio File',
+        name: 'Relaxing guitar',
         type: 'audio',
         path: "/file-server/audio.mp3",
         size: 6178
     },
     {
         id: 3,
-        name: 'Document File',
+        name: 'How to use BBCode Viewer ',
         type: 'document',
         path: "/file-server/document.pdf",
         size: 701
     },
     {
         id: 4,
-        name: 'Image File',
+        name: 'Toon',
         type: 'image',
         path: "/file-server/image.jpg",
         size: 677
     },
     {
         id: 5,
-        name: 'Image File 2',
+        name: 'Shooting',
         type: 'image',
         path: "/file-server/image2.jpg",
         size: 3745
     },
     {
         id: 6,
-        name: 'Image File 3',
+        name: 'Collection',
         type: 'image',
         path: "/file-server/image3.jpg",
         size: 1878
     },
     {
         id: 7,
-        name: 'Document File 2',
+        name: 'Unsplash User Guide',
         type: 'document',
         path: "/file-server/document2.pdf",
         size: 10747
     },
     {
         id: 8,
-        name: 'Document File 3',
+        name: 'HTML Color Codes',
         type: 'document',
         path: "/file-server/document3.pdf",
-        size: 272
+        size: 252
     },
     {
         id: 9,
-        name: 'Video File 2',
+        name: 'Fast & Furious',
         type: 'video',
         path: "/file-server/video2.mp4",
-        size: 272
+        size: 3508
     },
     {
         id: 10,
-        name: 'Video File 3',
+        name: 'Network',
         type: 'video',
         path: "/file-server/video3.mp4",
-        size: 272
+        size: 31316
     },
     {
         id: 11,
-        name: 'Audio File 2',
+        name: 'Lofi',
         type: 'audio',
         path: "/file-server/audio2.mp3",
-        size: 272
+        size: 2663
     },
     {
         id: 12,
-        name: 'Audio File 3',
+        name: 'Chill Playlist',
         type: 'audio',
         path: "/file-server/audio3.mp3",
-        size: 272
+        size: 4601
     },
 ]
