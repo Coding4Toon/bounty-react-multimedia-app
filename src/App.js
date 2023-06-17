@@ -32,9 +32,9 @@ export default function App() {
   const [selectedFile, setSelectedFile] = useState(null)
   const [filePath, setFilePath] = useState("/file-server/")
   const [showChartModal, setShowChartModal] = useState(false)
-  //feature "Space Breakdown"
+  //State for feature "Space Breakdown"
   const [showChartModalSpace, setShowChartModalSpace] = useState(false)
-  //feature "Files Filtering"
+  //States for feature "Files Filtering"
   const [filterVideo, setFilterVideo] = useState(false)
   const [filterAudio, setFilterAudio] = useState(false)
   const [filterDocument, setFilterDocument] = useState(false)
@@ -138,20 +138,24 @@ export default function App() {
         </div>
       )}
 
+      {/* Feature 1 : Adding new modal for space break down */}
       {showChartModalSpace && (
         <div style={styles.modal}>
-          <div style={styles.modalContent}>
+          <div style={styles.modalContent2}>
             <div style={styles.modalHeader}>
               <p style={{ fontWeight: "bold" }}>Space Breakdown</p>
               <button style={styles.closeButton} onClick={() => setShowChartModalSpace(false)}>close</button>
             </div>
-            <div style={styles.modalBody}>
+            <div style={styles.modalBody2}>
+              {/* Total space to 1GB (example) */}
               <p>Total space : <span style={{ fontWeight: "bold" }}>1 GB</span></p>
               <p>
+                {/* Compute space consumed */}
                 Space consumed:<span style={{ fontWeight: "bold" }}>{" "}
-                  {((myFiles
-                    .filter((file) => file.type === "video")
-                    .reduce((totalSize, video) => totalSize + video.size, 0) +
+                  {((
+                    myFiles
+                      .filter((file) => file.type === "video")
+                      .reduce((totalSize, video) => totalSize + video.size, 0) +
                     myFiles
                       .filter((file) => file.type === "audio")
                       .reduce((totalSize, audio) => totalSize + audio.size, 0) +
@@ -163,6 +167,7 @@ export default function App() {
                       .reduce((totalSize, image) => totalSize + image.size, 0)) / 1000000).toFixed(2)}{" "}
                   GB</span>
               </p>
+              {/* Display Pie Chart */}
               <Pie
                 data={{
                   labels: ['Video', 'Audio', 'Document', 'Image', 'Free'],
@@ -204,6 +209,8 @@ export default function App() {
       )
       }
 
+
+
       <div className="App">
         <Header />
         <div style={styles.container}>
@@ -238,6 +245,7 @@ export default function App() {
               }}
             >Files Breakdown</button>
 
+            {/* New Button to trigger Space breakdown modal */}
             <button style={styles.controlButton}
               onClick={() => {
                 setShowChartModalSpace(true)
@@ -264,7 +272,7 @@ export default function App() {
 
           </div>
 
-          {/* Feature 1 : Adding filters */}
+          {/* Feature 2 : Adding filters */}
           <div style={{ padding: 10, paddingBottom: 0, }}>
             <p>Filters</p>
           </div>
@@ -279,17 +287,21 @@ export default function App() {
                 let onlyDocument = [];
                 let onlyImage = [];
 
+                //Disabling current filter
                 if (filterVideo) {
                   onlyVideo = [];
                   setFilterVideo(false)
+                  //Showing all files if no others filters
                   if (!filterAudio && !filterDocument && !filterImage && !starred) {
                     return setMyFiles(data)
                   }
+                  //Showing favorite files 
                   if (!filterAudio && !filterDocument && !filterImage && starred) {
                     return setMyFiles(starredList)
                   }
                 } else { onlyVideo = data.filter(file => file.type === "video"); setFilterVideo(true) }
 
+                //Capturing  other filters statuses
                 if (filterAudio) {
                   onlyAudio = data.filter(file => file.type === "audio");
                 } else { onlyAudio = [] }
@@ -302,7 +314,7 @@ export default function App() {
                   onlyImage = data.filter(file => file.type === "image");
                 } else { onlyImage = [] }
 
-
+                //Applying favorite filter
                 setSelectedFile(null)
                 if (starred) {
                   onlyVideo = onlyVideo.filter(item => starredList.includes(item));
@@ -329,6 +341,7 @@ export default function App() {
                   onlyVideo = data.filter(file => file.type === "video");
                 } else { onlyVideo = []; }
 
+                //Disabling current filter
                 if (filterAudio) {
                   onlyAudio = [];
                   setFilterAudio(false)
@@ -349,7 +362,7 @@ export default function App() {
                   onlyImage = data.filter(file => file.type === "image");
                 } else { onlyImage = [] }
 
-
+                //Applying favorite filter
                 setSelectedFile(null)
                 if (starred) {
                   onlyVideo = onlyVideo.filter(item => starredList.includes(item));
@@ -380,6 +393,7 @@ export default function App() {
                   onlyAudio = data.filter(file => file.type === "audio");
                 } else { onlyAudio = []; }
 
+                //Disabling current filter
                 if (filterDocument) {
                   onlyDocument = [];
                   setFilterDocument(false)
@@ -395,6 +409,7 @@ export default function App() {
                   onlyImage = data.filter(file => file.type === "image");
                 } else { onlyImage = [] }
 
+                //Applying favorite filter
                 setSelectedFile(null)
                 if (starred) {
                   onlyVideo = onlyVideo.filter(item => starredList.includes(item));
@@ -408,7 +423,7 @@ export default function App() {
               }}
             ><i style={styles.iconButton} className="fas fa-file"></i></button>
 
-            {/* Filter - Image button  */}
+            {/* Filter - Image button */}
             <button style={{ ...styles.filterButton, backgroundColor: filterImage ? 'blue' : 'black', }}
               onClick={() => {
                 let onlyVideo = [];
@@ -428,6 +443,7 @@ export default function App() {
                   onlyDocument = data.filter(file => file.type === "document");
                 } else { onlyDocument = [] }
 
+                //Disabling current filter
                 if (filterImage) {
                   onlyImage = [];
                   setFilterImage(false);
@@ -441,7 +457,7 @@ export default function App() {
                   onlyImage = data.filter(file => file.type === "image"); setFilterImage(true)
                 }
 
-                //Case Favorite is triggered
+                //Applying favorite filter
                 setSelectedFile(null)
                 if (starred) {
                   onlyVideo = onlyVideo.filter(item => starredList.includes(item));
@@ -456,6 +472,7 @@ export default function App() {
               }}
             ><i style={styles.iconButton} className="fas fa-image"></i></button>
 
+            {/* Filter - Favorite button (disabled if no starred files) */}
             <button style={{
               ...styles.filterButton,
               backgroundColor: starred && starredList.length !== 0 ? 'blue' : starredList.length === 0 ? 'grey' : 'black',
@@ -529,6 +546,7 @@ export default function App() {
 
             ><i style={styles.iconButton} className="fas fa-star"></i></button>
 
+            {/* Filter - Reset filters */}
             <button style={styles.filterButton}
               onClick={() => {
                 setMyFiles(data)
@@ -564,6 +582,7 @@ export default function App() {
                       }}>
                       <p>
 
+                        {/* Clickable star icon to enable user to add file to favorite */}
                         <i className="fas fa-star"
                           style={{ ...styles.icon, color: starredList.some(item => item.id === file.id) ? 'blue' : 'black', }}
                           onClick={() => {
@@ -578,6 +597,7 @@ export default function App() {
                             return setStarredList(updatedList)
                           }}>
                         </i>
+                        {/* File type icon */}
                         <i style={styles.icon} className={getFileIcon(file.type)}></i>
                         {file.name}
                       </p>
@@ -607,6 +627,7 @@ export default function App() {
                 <p style={{ fontWeight: "bold", marginTop: 10 }}>{selectedFile.name}</p>
                 <p>path: <span style={{ fontStyle: "italic" }}>{selectedFile.path}</span></p>
                 <p>file type: <span style={{ fontStyle: "italic" }}>{selectedFile.type}</span></p>
+                {/* File size display */}
                 <p>file size: <span style={{ fontStyle: "italic" }}>{selectedFile.size} KB</span></p>
               </div>
 
@@ -704,6 +725,15 @@ const styles = {
     alignItems: 'center',
     flexDirection: 'column',
   },
+  modalContent2: {
+    backgroundColor: '#fff',
+    padding: '20px',
+    height: '52vh',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexDirection: 'column',
+  },
   modalClose: {
     position: 'absolute',
     top: 0,
@@ -712,6 +742,15 @@ const styles = {
     cursor: 'pointer',
   },
   modalBody: {
+    width: '100%',
+    height: '90%',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    flexDirection: 'row',
+    padding: '10px',
+  },
+  modalBody2: {
     width: '100%',
     height: '90%',
     display: 'flex',

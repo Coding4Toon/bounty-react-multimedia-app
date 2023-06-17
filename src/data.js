@@ -83,4 +83,25 @@ export const data = [
         path: "/file-server/audio3.mp3",
         size: 4601
     },
+    {
+        id: 13,
+        name: 'Jurassic Park',
+        type: 'image',
+        path: "/file-server/image4.jpg",
+        size: 2069
+    },
+    {
+        id: 14,
+        name: 'AL Lake',
+        type: 'image',
+        path: "/file-server/image5.jpg",
+        size: 1538
+    },
+    {
+        id: 15,
+        name: 'LA Lake',
+        type: 'image',
+        path: "/file-server/image6.jpg",
+        size: 2338
+    },
 ]
