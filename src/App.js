@@ -42,12 +42,24 @@ export default function App() {
   const [hoveredFile, setHoveredFile] = useState(null)
   const [starred, setStarred] = useState(false)
   const [starredList, setStarredList] = useState([])
-
-
+  const [starredListId, setStarredListId] = useState([])
 
   useEffect(() => {
     setMyFiles(data)
   }, [])
+
+  const getFileIcon = (fileType) => {
+    // Map file types to icon classes
+    const fileIcons = {
+      video: 'fas fa-video',
+      audio: 'fas fa-music',
+      image: 'fas fa-image',
+      document: 'fas fa-file',
+    };
+
+    // Return the icon class based on the file type
+    return fileIcons[fileType] || 'fas fa-file'; // Default to a file icon if the type is not found
+  };
 
   var barChartOptions = {
     responsive: true,
@@ -252,13 +264,14 @@ export default function App() {
 
           </div>
 
-          {/* feature 1 : Adding filters */}
+          {/* Feature 1 : Adding filters */}
           <div style={{ padding: 10, paddingBottom: 0, }}>
             <p>Filters</p>
           </div>
 
           <div style={styles.controlTools}>
 
+            {/* Filter - Video button  */}
             <button style={{ ...styles.filterButton, backgroundColor: filterVideo ? 'blue' : 'black', }}
               onClick={() => {
                 let onlyVideo = [];
@@ -269,6 +282,12 @@ export default function App() {
                 if (filterVideo) {
                   onlyVideo = [];
                   setFilterVideo(false)
+                  if (!filterAudio && !filterDocument && !filterImage && !starred) {
+                    return setMyFiles(data)
+                  }
+                  if (!filterAudio && !filterDocument && !filterImage && starred) {
+                    return setMyFiles(starredList)
+                  }
                 } else { onlyVideo = data.filter(file => file.type === "video"); setFilterVideo(true) }
 
                 if (filterAudio) {
@@ -283,18 +302,22 @@ export default function App() {
                   onlyImage = data.filter(file => file.type === "image");
                 } else { onlyImage = [] }
 
-                if (filterVideo) {
-                  onlyVideo = [];
-                  setFilterVideo(false)
-                } else { onlyVideo = data.filter(file => file.type === "video"); setFilterVideo(true) }
 
                 setSelectedFile(null)
-                return setMyFiles([...onlyVideo, ...onlyAudio, ...onlyDocument, ...onlyImage]);
-
+                if (starred) {
+                  onlyVideo = onlyVideo.filter(item => starredList.includes(item));
+                  onlyDocument = onlyDocument.filter(item => starredList.includes(item));
+                  onlyImage = onlyImage.filter(item => starredList.includes(item));
+                  onlyAudio = onlyAudio.filter(item => starredList.includes(item));
+                  return setMyFiles([...onlyVideo, ...onlyAudio, ...onlyDocument, ...onlyImage])
+                } else {
+                  return setMyFiles([...onlyVideo, ...onlyAudio, ...onlyDocument, ...onlyImage])
+                }
 
               }}
-            >Video</button>
+            ><i style={styles.iconButton} className="fas fa-video"></i></button>
 
+            {/* Filter - Audio button  */}
             <button style={{ ...styles.filterButton, backgroundColor: filterAudio ? 'blue' : 'black', }}
               onClick={() => {
                 let onlyVideo = [];
@@ -309,6 +332,13 @@ export default function App() {
                 if (filterAudio) {
                   onlyAudio = [];
                   setFilterAudio(false)
+                  if (!filterVideo && !filterDocument && !filterImage && !starred) {
+                    return setMyFiles(data)
+                  }
+                  if (!filterVideo && !filterDocument && !filterImage && starred) {
+                    return setMyFiles(starredList)
+                  }
+
                 } else { onlyAudio = data.filter(file => file.type === "audio"); setFilterAudio(true) }
 
                 if (filterDocument) {
@@ -319,12 +349,22 @@ export default function App() {
                   onlyImage = data.filter(file => file.type === "image");
                 } else { onlyImage = [] }
 
+
                 setSelectedFile(null)
-                return setMyFiles([...onlyVideo, ...onlyAudio, ...onlyDocument, ...onlyImage]);
+                if (starred) {
+                  onlyVideo = onlyVideo.filter(item => starredList.includes(item));
+                  onlyDocument = onlyDocument.filter(item => starredList.includes(item));
+                  onlyImage = onlyImage.filter(item => starredList.includes(item));
+                  onlyAudio = onlyAudio.filter(item => starredList.includes(item));
+                  return setMyFiles([...onlyVideo, ...onlyAudio, ...onlyDocument, ...onlyImage])
+                } else {
+                  return setMyFiles([...onlyVideo, ...onlyAudio, ...onlyDocument, ...onlyImage])
+                }
 
               }}
-            >Audio</button>
+            ><i style={styles.iconButton} className="fas fa-music"></i></button>
 
+            {/* Filter - Document button  */}
             <button style={{ ...styles.filterButton, backgroundColor: filterDocument ? 'blue' : 'black', }}
               onClick={() => {
                 let onlyVideo = [];
@@ -343,6 +383,12 @@ export default function App() {
                 if (filterDocument) {
                   onlyDocument = [];
                   setFilterDocument(false)
+                  if (!filterVideo && !filterAudio && !filterImage && !starred) {
+                    return setMyFiles(data)
+                  }
+                  if (!filterVideo && !filterAudio && !filterImage && starred) {
+                    return setMyFiles(starredList)
+                  }
                 } else { onlyDocument = data.filter(file => file.type === "document"); setFilterDocument(true) }
 
                 if (filterImage) {
@@ -350,10 +396,19 @@ export default function App() {
                 } else { onlyImage = [] }
 
                 setSelectedFile(null)
-                return setMyFiles([...onlyVideo, ...onlyAudio, ...onlyDocument, ...onlyImage]);
+                if (starred) {
+                  onlyVideo = onlyVideo.filter(item => starredList.includes(item));
+                  onlyDocument = onlyDocument.filter(item => starredList.includes(item));
+                  onlyImage = onlyImage.filter(item => starredList.includes(item));
+                  onlyAudio = onlyAudio.filter(item => starredList.includes(item));
+                  return setMyFiles([...onlyVideo, ...onlyAudio, ...onlyDocument, ...onlyImage])
+                } else {
+                  return setMyFiles([...onlyVideo, ...onlyAudio, ...onlyDocument, ...onlyImage])
+                }
               }}
-            >Document</button>
+            ><i style={styles.iconButton} className="fas fa-file"></i></button>
 
+            {/* Filter - Image button  */}
             <button style={{ ...styles.filterButton, backgroundColor: filterImage ? 'blue' : 'black', }}
               onClick={() => {
                 let onlyVideo = [];
@@ -375,24 +430,104 @@ export default function App() {
 
                 if (filterImage) {
                   onlyImage = [];
-                  setFilterImage(false)
-                } else { onlyImage = data.filter(file => file.type === "image"); setFilterImage(true) }
+                  setFilterImage(false);
+                  if (!filterVideo && !filterAudio && !filterDocument && !starred) {
+                    return setMyFiles(data)
+                  }
+                  if (!filterVideo && !filterAudio && !filterDocument && starred) {
+                    return setMyFiles(starredList)
+                  }
+                } else {
+                  onlyImage = data.filter(file => file.type === "image"); setFilterImage(true)
+                }
 
+                //Case Favorite is triggered
                 setSelectedFile(null)
-
                 if (starred) {
-                  return setMyFiles([...onlyVideo, ...onlyAudio, ...onlyDocument, ...onlyImage, ...starredList])
+                  onlyVideo = onlyVideo.filter(item => starredList.includes(item));
+                  onlyDocument = onlyDocument.filter(item => starredList.includes(item));
+                  onlyImage = onlyImage.filter(item => starredList.includes(item));
+                  onlyAudio = onlyAudio.filter(item => starredList.includes(item));
+                  return setMyFiles([...onlyVideo, ...onlyAudio, ...onlyDocument, ...onlyImage])
                 } else {
                   return setMyFiles([...onlyVideo, ...onlyAudio, ...onlyDocument, ...onlyImage])
                 }
-              }}
-            >Image</button>
 
-            <button style={{ ...styles.filterButton, backgroundColor: starred ? 'blue' : 'black', }}
+              }}
+            ><i style={styles.iconButton} className="fas fa-image"></i></button>
+
+            <button style={{
+              ...styles.filterButton,
+              backgroundColor: starred && starredList.length !== 0 ? 'blue' : starredList.length === 0 ? 'grey' : 'black',
+            }}
+              disabled={starredList.length === 0}
               onClick={() => {
 
+
+                let onlyVideo = [];
+                let onlyAudio = [];
+                let onlyDocument = [];
+                let onlyImage = [];
+
+                if (starred) {
+
+                  if (!filterVideo && !filterAudio && !filterDocument && !filterImage) {
+                    setStarred(false);
+                    return setMyFiles(data)
+                  }
+
+                  if (filterVideo) {
+                    onlyVideo = data.filter(file => file.type === "video");
+                  } else { onlyVideo = [] }
+
+                  if (filterAudio) {
+                    onlyAudio = data.filter(file => file.type === "audio");
+                  } else { onlyAudio = [] }
+
+                  if (filterDocument) {
+                    onlyDocument = data.filter(file => file.type === "document");
+                  } else { onlyDocument = [] }
+
+                  if (filterImage) {
+                    onlyImage = data.filter(file => file.type === "image");
+                  } else { onlyImage = []; }
+
+                  setStarred(false);
+                  setSelectedFile(null)
+                  return setMyFiles([...onlyVideo, ...onlyAudio, ...onlyDocument, ...onlyImage])
+
+                } else {
+
+                  if (!filterVideo && !filterAudio && !filterDocument && !filterImage) {
+                    setStarred(true);
+                    return setMyFiles(starredList)
+                  }
+
+                  if (filterVideo) {
+                    onlyVideo = data.filter(file => file.type === "video").filter(item => starredList.includes(item));
+                  } else { onlyVideo = [] }
+
+                  if (filterAudio) {
+                    onlyAudio = data.filter(file => file.type === "audio").filter(item => starredList.includes(item));
+                  } else { onlyAudio = [] }
+
+                  if (filterDocument) {
+                    onlyDocument = data.filter(file => file.type === "document").filter(item => starredList.includes(item));
+                  } else { onlyDocument = [] }
+
+                  if (filterImage) {
+                    onlyImage = data.filter(file => file.type === "image").filter(item => starredList.includes(item));
+                  } else { onlyImage = []; }
+
+                  setStarred(true);
+                  setSelectedFile(null);
+                  return setMyFiles([...onlyVideo, ...onlyAudio, ...onlyDocument, ...onlyImage])
+
+                }
+
               }}
-            >Favorite</button>
+
+            ><i style={styles.iconButton} className="fas fa-star"></i></button>
 
             <button style={styles.filterButton}
               onClick={() => {
@@ -402,8 +537,9 @@ export default function App() {
                 setFilterDocument(false)
                 setFilterImage(false)
                 setSelectedFile(null)
+                setStarred(false);
               }}
-            >Reset</button>
+            ><i style={styles.iconButton} className="fas fa-undo" ></i></button>
 
           </div>
 
@@ -426,21 +562,25 @@ export default function App() {
                           setSelectedFile(null)
                         } else { setSelectedFile(file) }
                       }}>
-                      <p><i className="fas fa-star"
-                        style={{ color: starredList.includes(file.id) ? 'blue' : 'black', }}
-                        onClick={() => {
+                      <p>
 
-                          let updatedList = [];
-                          if (starredList.includes(file.id)) {
-                            updatedList = starredList.filter((file) => file.id !== file.id);
-                            setStarredList(updatedList)
+                        <i className="fas fa-star"
+                          style={{ ...styles.icon, color: starredList.some(item => item.id === file.id) ? 'blue' : 'black', }}
+                          onClick={() => {
 
-                          } else {
-                            updatedList = [...starredList, file.id];
-                            setStarredList(updatedList)
-                          }
-                        }}>
-                      </i> {file.name}</p>
+                            let updatedList = [];
+                            if (starredList.some(item => item.id === file.id)) {
+                              updatedList = starredList.filter(item => item.id !== file.id);
+                            } else {
+                              updatedList = [...starredList, file];
+                            }
+                            setStarred(false);
+                            return setStarredList(updatedList)
+                          }}>
+                        </i>
+                        <i style={styles.icon} className={getFileIcon(file.type)}></i>
+                        {file.name}
+                      </p>
                     </div>
 
                   )
@@ -533,6 +673,14 @@ const styles = {
     fontWeight: 'bold',
     color: 'white',
     background: '#566573',
+  },
+  icon: {
+    padding: '5px 25px',
+    marging: 'auto',
+  },
+  iconButton: {
+    padding: '8px 15px',
+    marging: 'auto',
   },
 
   // modal
