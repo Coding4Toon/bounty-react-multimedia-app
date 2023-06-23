@@ -90,3 +90,5 @@ Favorite button is disabled until one file is starred by user.
 
 3) UI - Icons representing file type added to have a better visualization. 
 ### `npm install @fortawesome/fontawesome-free`
+
+4) UX - Several multimedia files added to give contextual experience.
