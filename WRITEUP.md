@@ -10,7 +10,7 @@ This document provides details and explanation regarding 2 features added to the
 
 The first feature delivered is a robust space breakdown feature that aims to provide our users with a comprehensive and visual overview of their storage capacity. 
 
-File size is added to each files and a new control button called "Space breakdown" is implemented between "Files Breakdown" button and "Download" button. 
+File size is added to each files and a new control button called "Space breakdown" is implemented between "Files Breakdown" button and "Download" button.<br> 
 When the button is clicked, a pop-up window is displayed, presenting critical storage information, including : 
 - Total space provided by T's Drive
 - Space consumed by the user
@@ -18,7 +18,7 @@ When the button is clicked, a pop-up window is displayed, presenting critical st
 
 ### Benefit
 
-Storage is a crucial element in multimedia applications and the "Space Breakdown" feature empowers our users to monitor and manage their storage effectively.
+Storage is a crucial element in multimedia applications and the "Space Breakdown" feature empowers our users to monitor and manage their storage effectively.<br>
 Additionally, the inclusion of a pie chart allows users to easily visualize and identify which types of files are consuming the most space. This enables them to effectively prioritize cleaning up or deleting unnecessary files freeing up valuable storage space. 
 
 ### Code
@@ -45,16 +45,14 @@ Additionally, the inclusion of a pie chart allows users to easily visualize and 
 
 The second feature delivered is a robust files filtering feature that enables our users to visualize their files based filters.
 
-A new section called "Filter is implemented under control buttons. Up to 5 filters can be applied  : Video, Audio, Document, Image and Favorite.
-When the filter is selected, then the files related to the filter are displayed.
-When the filter is deselected, then the files related to the filter are not displayed.
-Several filter can be applied at the same time, then the files related to the filters are displayed. 
-Users can also mark files as "starred" or "unstarred", and use "Favorite" filter to only display the starred files. 
+A new section called "Filters" is implemented under control buttons. Up to 5 filters can be applied  : Video, Audio, Document, Image and Favorite.
+Several filter can be applied at the same time, then the files related to the filters are displayed.<br>
+Users can also mark files as "starred" and use "Favorite" filter to only display the starred files.<br>
 Additionally, users have the ability to reset all filters and view their entire file collection.
 
 ### Benefit
 
-User experience is a crucial element in web applications and the "Files Filtering" feature empowers our users to improve and personalized their file organization and selection effectively, when working with different types of multimedia files.
+User experience is a crucial element in web applications and the "Files Filtering" feature empowers our users to improve and personalized their file organization and selection effectively, when working with different types of multimedia files.<br>
 Additionally, by starring or marking files as favorites, users can create their personalized collection of important or frequently accessed files. This enables them to quickly locate and access their preferred files without the need to search through their entire file library.
 
 ### Code
@@ -68,11 +66,11 @@ Additionally, by starring or marking files as favorites, users can create their 
 2) New state implemented to track reset filters triggered by the user  
 #### `const [showChartModalSpace, setShowChartModalSpace] = useState(false)`
 
-3) 5 buttons  added to trigger filters
-For each button, when user selects or deselect filter, then filter is applied and files are displayed accordingly. 
-For each button, when user selects or deselects one or more filters, then filters are applied simultaneously and files are displayed accordingly.
+3) 5 buttons  added to trigger filters<br>
+For each button, when user selects or deselect filter, then filter is applied and files are displayed accordingly.<br> 
+For each button, when user selects or deselects one or more filters, then filters are applied simultaneously and files are displayed accordingly.<br>
 For each button, when user selects or deselects favorite, then starred files are displayed accordingly if any files have been starred by user. 
-For each button, when filter is activated, color of the button will change. 
+For each button, when filter is activated, color of the button will change.<br> 
 Favorite button is disabled until one file is starred by user.
 
 4) 1 button  added to trigger reset
