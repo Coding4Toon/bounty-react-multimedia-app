@@ -1,6 +1,6 @@
 # Write up 
 
-This document provides details and explation regarding 2 features added to the multimedia app in the context of bounty. 
+This document provides details and explanation regarding 2 features added to the multimedia app in the context of bounty. 
 
 
 
@@ -8,7 +8,7 @@ This document provides details and explation regarding 2 features added to the m
 
 ### Description
 
-The first feature delivered is a robust space breakdown feature that aims to provide our users with a comprehensive and visual overview of thier storage capacity. 
+The first feature delivered is a robust space breakdown feature that aims to provide our users with a comprehensive and visual overview of their storage capacity. 
 
 File size is added to each files and a new control button called "Space breakdown" is implemented between "Files Breakdown" button and "Download" button. 
 When the button is clicked, a pop-up window is displayed, presenting critical storage information, including : 
@@ -19,7 +19,7 @@ When the button is clicked, a pop-up window is displayed, presenting critical st
 ### Benefit
 
 Storage is a crucial element in multimedia applications and the "Space Breakdown" feature empowers our users to monitor and manage their storage effectively.
-Additionally, the inclusion of a pie chart allows users to easly visualize and identify which types of files are consuming the most space. This enables them to effectively prioritize cleaning up or deleting unnecessary files freeing up valuable storage space. 
+Additionally, the inclusion of a pie chart allows users to easily visualize and identify which types of files are consuming the most space. This enables them to effectively prioritize cleaning up or deleting unnecessary files freeing up valuable storage space. 
 
 ### Code
 
@@ -48,13 +48,13 @@ The second feature delivered is a robust files filtering feature that enables ou
 A new section called "Filter is implemented under control buttons. Up to 5 filters can be applied  : Video, Audio, Document, Image and Favorite.
 When the filter is selected, then the files related to the filter are displayed.
 When the filter is deselected, then the files related to the filter are not displayed.
-Several filter can be applied at the same time, then the files realted to the filters are displayed. 
+Several filter can be applied at the same time, then the files related to the filters are displayed. 
 Users can also mark files as "starred" or "unstarred", and use "Favorite" filter to only display the starred files. 
 Additionally, users have the ability to reset all filters and view their entire file collection.
 
 ### Benefit
 
-User experience is a crucial element in web applications and the "Files Filtering" feature empowers our users to imporve and personalized their file organisation and selection effectively, when working with different types of multimedia files.
+User experience is a crucial element in web applications and the "Files Filtering" feature empowers our users to improve and personalized their file organization and selection effectively, when working with different types of multimedia files.
 Additionally, by starring or marking files as favorites, users can create their personalized collection of important or frequently accessed files. This enables them to quickly locate and access their preferred files without the need to search through their entire file library.
 
 ### Code
