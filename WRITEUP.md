@@ -26,9 +26,9 @@ Additionally, the inclusion of a pie chart allows users to easly visualize and i
 1) For each files, "size" data added in data.js  
 #### example : `size: 3745`
 
-2) "File size" data added under file Player or file Viewer when file is selected
+2) "File size" data is displayed under file Player or file Viewer when file is selected by user
 
-3) New button "Space Brealdown" added to trigger Modal display
+3) New button "Space Breakdown" added to trigger Modal display
 
 4) New state implemented to display Modal when button is clicked 
 #### `const [showChartModalSpace, setShowChartModalSpace] = useState(false)`
@@ -36,6 +36,7 @@ Additionally, the inclusion of a pie chart allows users to easly visualize and i
 5) In Modal, for each file types, .filter() and .reduce() functions used to go through each files with the same type and compute total sizes per type and free space remaining
 #### example : `myFiles.filter(file => file.type === 'video').reduce((totalSize, video) => totalSize + video.size, 0)`
 
+6) Sizes are displayed in Pie chart using Chart.js
 
 
 ## Feature 2 - Files Filtering
@@ -57,8 +58,34 @@ User experience is a crucial element in web applications and the "Files Filterin
 Additionally, by starring or marking files as favorites, users can create their personalized collection of important or frequently accessed files. This enables them to quickly locate and access their preferred files without the need to search through their entire file library.
 
 ### Code
-TBD
+1) New states implemented to track filters selected by the user  
+#### `const [showChartModalSpace, setShowChartModalSpace] = useState(false)`
+#### `const [showChartModalSpace, setShowChartModalSpace] = useState(false)`
+#### `const [showChartModalSpace, setShowChartModalSpace] = useState(false)`
+#### `const [showChartModalSpace, setShowChartModalSpace] = useState(false)`
+#### `const [showChartModalSpace, setShowChartModalSpace] = useState(false)`
+
+2) New state implemented to track reset filters triggered by the user  
+#### `const [showChartModalSpace, setShowChartModalSpace] = useState(false)`
+
+3) 5 buttons  added to trigger filters
+For each button, when user selects or deselect filter, then filter is applied and files are displayed accordingly. 
+For each button, when user selects or deselects one or more filters, then filters are applied simultaneously and files are displayed accordingly.
+For each button, when user selects or deselects favorite, then starred files are displayed accordingly if any files have been starred by user. 
+For each button, when filter is activated, color of the button will change. 
+Favorite button is disabled until one file is starred by user.
+
+4) 1 button  added to trigger reset
+
+5) Clickable star icon added to each file to enable user to add files to favorite list. 
 
 
 
+## BONUSES
+
+1) UI - When user mouse is on a file, then file is highlighted until mouse is no more on file. 
+
+2) UI - When file is selected by user, then selected file is highlighted until deselection. 
+
+3) UI - Icons representing file type added to have a better visualization. 
 ### `npm install @fortawesome/fontawesome-free`
