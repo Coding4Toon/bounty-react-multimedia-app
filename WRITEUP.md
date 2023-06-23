@@ -45,7 +45,7 @@ Additionally, the inclusion of a pie chart allows users to easily visualize and 
 
 The second feature delivered is a robust files filtering feature that enables our users to visualize their files based filters.
 
-A new section called "Filters" is implemented under control buttons. Up to 5 filters can be applied  : Video, Audio, Document, Image and Favorite.
+A new section called "Filters" is implemented under control buttons. Up to 5 filters can be applied  : Video, Audio, Document, Image and Favorite.<br> 
 Several filter can be applied at the same time, then the files related to the filters are displayed.<br>
 Users can also mark files as "starred" and use "Favorite" filter to only display the starred files.<br>
 Additionally, users have the ability to reset all filters and view their entire file collection.
