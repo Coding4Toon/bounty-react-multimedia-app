@@ -1,8 +1,9 @@
 # Write up 
 
 This document provides details and explanation regarding 2 features added to the multimedia app in the context of bounty. 
-
-
+<br> 
+<br> 
+<br> 
 
 ## Feature 1 - Space Breaking down
 
@@ -37,7 +38,9 @@ Additionally, the inclusion of a pie chart allows users to easily visualize and 
 #### example : `myFiles.filter(file => file.type === 'video').reduce((totalSize, video) => totalSize + video.size, 0)`
 
 6) Sizes are displayed in Pie chart using Chart.js
-
+<br> 
+<br> 
+<br> 
 
 ## Feature 2 - Files Filtering
 
